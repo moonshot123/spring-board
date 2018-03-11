@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+
+mapper >> mybitis
+	
+	resultmap 사용하는 방법
+	
+	
+ -->	 
+<mapper namespace="mapper">
+	
+	<select id="list" resultType="com.board.vo.boardVO">
+	
+		select 
+		
+			SEQ
+			,MEM_ID
+			,MEM_NAME
+			,BOARD_SUBJECT
+			,BOARD_CONTENT
+			,REG_DATE
+			,UPT_DATE
+			,VIEW_CNT	
+		
+		from BOARD_STUDY 
+	
+	</select>
+	
+	
+	<insert id="insert" parameterType="com.board.vo.boardVO">
+		
+		insert into BOARD_STUDY(
+								SEQ
+								,MEM_ID
+								,MEM_NAME
+								,BOARD_SUBJECT
+								,BOARD_CONTENT
+								,REG_DATE
+								,VIEW_CNT
+								)
+		values(
+			  (select nvl(max(SEQ)+1,1) from BOARD_STUDY)
+			  ,#{MEM_ID}
+			  ,#{MEM_NAME}
+			  ,#{BOARD_SUBJECT}
+			  ,#{BOARD_CONTENT}
+			  ,sysdate
+			  ,0			
+		)
+	
+	</insert>
+	
+	
+	<select id="board" parameterType="INTEGER" resultType="com.board.vo.boardVO">
+		
+		select
+		 
+			SEQ
+			,MEM_ID
+			,MEM_NAME
+			,BOARD_SUBJECT
+			,BOARD_CONTENT
+				
+		FROM BOARD_STUDY
+		WHERE SEQ = #{seq}
+	</select>
+	
+	
+	<update id="updateboard" parameterType="com.board.vo.boardVO">
+		UPDATE BOARD_STUDY 
+		SET 			
+			MEM_ID			= #{MEM_ID}
+			,MEM_NAME		= #{MEM_NAME}
+			,BOARD_SUBJECT	= #{BOARD_SUBJECT}
+			,BOARD_CONTENT	= #{BOARD_CONTENT}
+			,UPT_DATE		= sysdate
+		WHERE SEQ = #{SEQ}
+	</update>
+	
+	
+	<delete id="del" parameterType="integer">
+		DELETE FROM BOARD_STUDY
+		WHERE SEQ=#{SEQ}			
+	</delete>
+	
+	
+	
+	
+	
+</mapper>
