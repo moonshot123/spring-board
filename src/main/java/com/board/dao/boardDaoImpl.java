@@ -1,6 +1,7 @@
 package com.board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -16,10 +17,10 @@ public class boardDaoImpl implements boardDAO{
 	SqlSessionTemplate sqlsession;
 
 	@Override
-	public List<boardVO> alllist() {
+	public List<boardVO> alllist(Map<String, Object> serchmap) {
 		// TODO Auto-generated method stub
 		
-		List<boardVO> list = sqlsession.selectList("mapper.list");
+		List<boardVO> list = sqlsession.selectList("mapper.list",serchmap);
 		
 		return list;
 	}

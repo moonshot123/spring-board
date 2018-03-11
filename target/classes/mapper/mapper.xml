@@ -10,11 +10,13 @@ mapper >> mybitis
  -->	 
 <mapper namespace="mapper">
 	
-	<select id="list" resultType="com.board.vo.boardVO">
+	<select id="list" resultType="com.board.vo.boardVO" parameterType="hashmap">
 	
-		select 
+		select * from(
 		
-			SEQ
+		select 
+			rownum rnum
+			,SEQ
 			,MEM_ID
 			,MEM_NAME
 			,BOARD_SUBJECT
@@ -24,7 +26,28 @@ mapper >> mybitis
 			,VIEW_CNT	
 		
 		from BOARD_STUDY 
-	
+		where 1=1
+		
+		<if test="serselect == 'BOARD_SUBJECT' ">
+			and BOARD_SUBJECT like '%'||#{serch}||'%'
+		</if>
+		
+		<if test="serselect == 'BOARD_CONTENT' ">
+			and BOARD_CONTENT like '%'||#{serch}||'%'
+		</if>
+		
+		<if test="serselect == 'BOARD_SC' ">
+			and BOARD_CS like '%'||#{serch}||'%'
+		</if>
+		
+		<if test=" sdate != null and sdate != '' ">
+			and to_char(REG_DATE,'yyyy-MM-dd') >= #{sdate}
+			and to_char(REG_DATE,'yyyy-MM-dd')<![CDATA[ <= ]]>#{ndate}			
+		</if> 
+		)where rnum > (#{pageNo}-1) * #{listsize}
+		and rnum <![CDATA[ <= ]]> #{pageNo} * #{listsize}
+		
+				
 	</select>
 	
 	

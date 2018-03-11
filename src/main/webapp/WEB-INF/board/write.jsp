@@ -8,6 +8,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="/resources/js/jquery-3.3.1.js"></script>
 
+<link rel="stylesheet" href="/resources/jquery-ui-1.12.1/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <title>Insert title here</title>
 <script type="text/javascript">
 	
@@ -42,7 +48,7 @@
 	writeform.jsp
 		
 	<form id="frm" name="frm">
-	<table border="1px">
+	<table>
 		<tr>
 			<td>아이디</td>
 			<td> <input type="text" name="MEM_ID" id="MEM_ID" value="${board.MEM_ID}"> </td>

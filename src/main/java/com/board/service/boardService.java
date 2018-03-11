@@ -1,12 +1,13 @@
 package com.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.board.vo.boardVO;
 
 public interface boardService {
 
-	List<boardVO> alllist();
+	List<boardVO> alllist(Map<String, Object> serchmap);
 
 	int write(boardVO vo);
 

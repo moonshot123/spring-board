@@ -1,6 +1,7 @@
 package com.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -16,9 +17,9 @@ public class boardServiceImpl implements boardService{
 	boardDAO boarddao;
 
 	@Override
-	public List<boardVO> alllist() {
+	public List<boardVO> alllist(Map<String, Object> serchmap) {
 		// TODO Auto-generated method stub
-		List<boardVO> list= boarddao.alllist();
+		List<boardVO> list= boarddao.alllist(serchmap);
 		return list;
 	}
 

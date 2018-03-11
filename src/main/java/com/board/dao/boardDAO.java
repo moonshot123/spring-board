@@ -1,12 +1,13 @@
 package com.board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.board.vo.boardVO;
 
 public interface boardDAO {
 
-	List<boardVO> alllist();
+	List<boardVO> alllist(Map<String, Object> serchmap);
 
 	int write(boardVO vo);
 
